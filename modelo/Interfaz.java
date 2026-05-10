@@ -57,6 +57,6 @@ public class Interfaz {
     public void juego(){
         iniciarGraficosJuego();
         while(interfaz==0) home();
-        while(interfaz==1)
+        while(interfaz==1);
     }
 }
