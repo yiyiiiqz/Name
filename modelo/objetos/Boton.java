@@ -2,8 +2,8 @@ package modelo.objetos;
 import modelo.base.*;
 
 public abstract class Boton {
-    private String name;
-    private Punto position;
+    protected String name;
+    protected Punto position;
 
     public Boton(String n, double x, double y){
         name= n;
