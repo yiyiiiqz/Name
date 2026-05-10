@@ -29,7 +29,7 @@ public class Interfaz {
     // 1. Panel de inicio
     public void home(){
         StdDraw.clear();
-        StdDraw.picture(50,50,"blueBackground.jpeg");
+        StdDraw.picture(50,50,"pinkBackground.jpeg");
         StdDraw.text(50,75,"Tiles");
         StdDraw.show();
         StdDraw.pause(PASO_MS);
