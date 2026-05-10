@@ -2,6 +2,7 @@ package modelo;
 
 import java.awt.Color;
 import stdlib.StdDraw;
+import modelo.objetos.*;
 
 public class Interfaz {
 
@@ -13,12 +14,18 @@ public class Interfaz {
     // public static final int ESPACIO = 32; 
     public static final int PASO_MS = 50; 
 
-    private int interfaz= 0;
+    public int interfaz;
 
-    public Interfaz(){}
+    public Interfaz(){
+        interfaz=0;
+    }
+
+    public void siguienteInterfaz(){
+        interfaz+=1;
+    }
 
     //Iniciar gráficos
-    public void iniciarGraficos(){
+    public void iniciarGraficosJuego(){
         StdDraw.enableDoubleBuffering();
         StdDraw.setCanvasSize(XMAX, YMAX);
         StdDraw.setScale(0, ESCALA);
@@ -26,18 +33,29 @@ public class Interfaz {
         StdDraw.setPenColor(DEFAULT_COLOR);
     }
 
+    /*public void iniciarGraficosHome(){
+        StdDraw.clear();
+        StdDraw.picture(50,50,"pinkBackground.jpeg");
+        StdDraw.text(50,75,"Tiles");
+    }*/
+
+
     // 1. Panel de inicio
     public void home(){
         StdDraw.clear();
         StdDraw.picture(50,50,"pinkBackground.jpeg");
+        StdDraw.setPenColor(StdDraw.WHITE);
         StdDraw.text(50,75,"Tiles");
+        BotonPlay b= new BotonPlay(50, 50, 24, 12);
+        b.mouse();
+        b.interaccion(this);
         StdDraw.show();
         StdDraw.pause(PASO_MS);
     }
 
     // Juego
     public void juego(){
-        iniciarGraficos();
+        iniciarGraficosJuego();
         while(interfaz==0) home();
     }
 }
