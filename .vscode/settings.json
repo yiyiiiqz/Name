@@ -2,6 +2,8 @@
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
         "c:\\Users\\angel\\Downloads\\stdlib.jar",
-        "c:\\Users\\angel\\Downloads\\tads.jar"
+        "c:\\Users\\angel\\Downloads\\tads.jar",
+        "c:\\Users\\12345\\Desktop\\PRO2\\Lab4\\lib\\stdlib.jar",
+        "c:\\Users\\12345\\Desktop\\PRO2\\20042026AhorcadoTADS\\lib\\tads.jar"
     ]
 }

@@ -1,13 +1,14 @@
 package modelo.objetos;
-import modelo.base.*;
 
 public abstract class Boton {
     protected String name;
-    protected Punto position;
+    protected double x;
+    protected double y;
 
     public Boton(String n, double x, double y){
         name= n;
-        position= new Punto(x,y);
+        this.x=x;
+        this.y=y;
     }
 
     public abstract void pintar();
