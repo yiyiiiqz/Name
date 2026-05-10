@@ -23,7 +23,7 @@ public class BotonFacil extends Boton {
     }
 
     @Override
-    public void interaccion() {
+    public void interaccion(Object o) {
         // Código para seleccionar la dificultad fácil cuando se haga clic en el botón
     }
 }
