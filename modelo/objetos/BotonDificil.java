@@ -11,10 +11,10 @@ public class BotonDificil extends Boton {
     @Override
     public void pintar() {
         StdDraw.setPenColor(StdDraw.RED);
-        StdDraw.rectangle(x, y, ancho, alto);
+        StdDraw.filledRectangle(x, y, ancho/2, alto/2);
 
         StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.text(ancho/2, alto/2, name);
+        StdDraw.text(x, y, name);
     }
 
     @Override
@@ -23,7 +23,7 @@ public class BotonDificil extends Boton {
     }
 
     @Override
-    public void interaccion() {
+    public void interaccion(Object o) {
         // Código para seleccionar la dificultad difícil cuando se haga clic en el botón
     }
 }

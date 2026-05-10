@@ -1,6 +1,7 @@
 package modelo;
 
 import java.awt.Color;
+
 import stdlib.StdDraw;
 import modelo.objetos.*;
 
@@ -25,20 +26,13 @@ public class Interfaz {
     }
 
     //Iniciar gráficos
-    public void iniciarGraficosJuego(){
+    public void iniciarGraficos(){
         StdDraw.enableDoubleBuffering();
         StdDraw.setCanvasSize(XMAX, YMAX);
         StdDraw.setScale(0, ESCALA);
         // StdDraw.setPenRadius(5);
         StdDraw.setPenColor(DEFAULT_COLOR);
     }
-
-    /*public void iniciarGraficosHome(){
-        StdDraw.clear();
-        StdDraw.picture(50,50,"pinkBackground.jpeg");
-        StdDraw.text(50,75,"Tiles");
-    }*/
-
 
     // 1. Panel de inicio
     public void home(){
@@ -53,10 +47,27 @@ public class Interfaz {
         StdDraw.pause(PASO_MS);
     }
 
+    //2. Opciones menu
+    public void menu(){
+        StdDraw.clear();
+        StdDraw.picture(50,50,"pinkBackground.jpeg");
+        StdDraw.setPenColor(StdDraw.BLACK);
+        StdDraw.text(50, 90, "Choose the mode");
+        
+
+        BotonFacil facil = new BotonFacil("Begginer", 27, 45, 38, 70);
+        facil.pintar();
+        BotonDificil dificil = new BotonDificil("Hardcore", 73, 45, 38, 70);
+        dificil.pintar();
+
+        StdDraw.show();
+        StdDraw.pause(PASO_MS);
+    }
+
     // Juego
     public void juego(){
-        iniciarGraficosJuego();
+        iniciarGraficos();
         while(interfaz==0) home();
-        while(interfaz==1);
+        while(interfaz==1) menu();
     }
 }
