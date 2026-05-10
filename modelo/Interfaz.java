@@ -1,6 +1,8 @@
 package modelo;
 
 import java.awt.Color;
+
+import modelo.objetos.*;
 import stdlib.StdDraw;
 
 public class Interfaz {
@@ -29,8 +31,23 @@ public class Interfaz {
     // 1. Panel de inicio
     public void home(){
         StdDraw.clear();
-        StdDraw.picture(50,50,"pinkBackground.jpeg");
         StdDraw.text(50,75,"Tiles");
+        StdDraw.show();
+        StdDraw.pause(PASO_MS);
+    }
+
+    //2. Opciones menu
+    public void menu(){
+        StdDraw.clear();
+        StdDraw.setPenColor(StdDraw.BLACK);
+        StdDraw.text(50, 90, "Choose the mode");
+        
+
+        BotonFacil facil = new BotonFacil("Begginer", 27, 45, 38, 70);
+        facil.pintar();
+        BotonDificil dificil = new BotonDificil("Hardcore", 73, 45, 38, 70);
+        dificil.pintar();
+
         StdDraw.show();
         StdDraw.pause(PASO_MS);
     }
@@ -38,6 +55,8 @@ public class Interfaz {
     // Juego
     public void juego(){
         iniciarGraficos();
-        while(interfaz==0) home();
+        while(interfaz==0){
+            home();
+        }
     }
 }
