@@ -25,7 +25,7 @@ public class Interfaz {
     }
 
     //Iniciar gráficos
-    public void iniciarGraficosJuego(){
+    public void iniciarGraficos(){
         StdDraw.enableDoubleBuffering();
         StdDraw.setCanvasSize(XMAX, YMAX);
         StdDraw.setScale(0, ESCALA);
@@ -33,17 +33,11 @@ public class Interfaz {
         StdDraw.setPenColor(DEFAULT_COLOR);
     }
 
-    /*public void iniciarGraficosHome(){
-        StdDraw.clear();
-        StdDraw.picture(50,50,"pinkBackground.jpeg");
-        StdDraw.text(50,75,"Tiles");
-    }*/
-
-
     // 1. Panel de inicio
     public void home(){
         StdDraw.clear();
         StdDraw.picture(50,50,"pinkBackground.jpeg");
+        StdDraw.setPenColor(StdDraw.WHITE);
         StdDraw.text(50,75,"Tiles");
         BotonPlay b= new BotonPlay(50, 50, 24, 12);
         b.mouse();
@@ -55,6 +49,7 @@ public class Interfaz {
     //2. Opciones menu
     public void menu(){
         StdDraw.clear();
+        StdDraw.picture(50,50,"pinkBackground.jpeg");
         StdDraw.setPenColor(StdDraw.BLACK);
         StdDraw.text(50, 90, "Choose the mode");
         
@@ -72,5 +67,6 @@ public class Interfaz {
     public void juego(){
         iniciarGraficos();
         while(interfaz==0) home();
+        while(interfaz==1) menu();
     }
 }
