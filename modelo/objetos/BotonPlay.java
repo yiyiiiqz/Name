@@ -13,7 +13,6 @@ public class BotonPlay extends Boton{
         StdDraw.setPenColor(StdDraw.WHITE);
         StdDraw.rectangle(x,y,ancho/2,alto/2);
         StdDraw.text(x, y, name);
-        StdDraw.show();
     }
 
     @Override
@@ -23,7 +22,6 @@ public class BotonPlay extends Boton{
             StdDraw.filledRectangle(x,y,ancho/2,alto/2);
             StdDraw.setPenColor(StdDraw.PINK);
             StdDraw.text(x, y, name);
-            StdDraw.show();
         }
         else{
             pintar();
@@ -34,6 +32,7 @@ public class BotonPlay extends Boton{
     public void interaccion(Object o) {
         Interfaz i= (Interfaz) o;
         if(StdDraw.mousePressed() && overButton()){
+            while(StdDraw.mousePressed()) StdDraw.pause(20);
             //Añadir animación+ sonido
             i.siguienteInterfaz();
         }
