@@ -1,5 +1,6 @@
 package modelo.objetos;
 
+import modelo.Interfaz;
 import stdlib.StdDraw;
 
 public class BotonFacil extends Boton {
@@ -19,11 +20,24 @@ public class BotonFacil extends Boton {
 
     @Override
     public void mouse() {
-        // Código para detectar el clic del mouse en el botón
+        if(overButton()){
+            StdDraw.setPenColor(StdDraw.WHITE);
+            StdDraw.filledRectangle(x,y,ancho/2,alto/2);
+            StdDraw.setPenColor(StdDraw.PINK);
+            StdDraw.text(x, y, name);
+            StdDraw.show();
+        }
+        else{
+            pintar();
+        }
     }
 
     @Override
     public void interaccion(Object o) {
-        // Código para seleccionar la dificultad fácil cuando se haga clic en el botón
+        Interfaz i= (Interfaz) o;
+        if(StdDraw.mousePressed() && overButton()){
+            //Añadir animación+ sonido
+            i.siguienteInterfaz(2);
+        }
     }
 }
