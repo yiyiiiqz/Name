@@ -34,10 +34,14 @@ public class Interfaz {
         StdDraw.setPenColor(DEFAULT_COLOR);
     }
 
-    // 1. Panel de inicio
-    public void home(){
+    public void clearScreen(){
         StdDraw.clear();
         StdDraw.picture(50,50,"pinkBackground.jpeg");
+    }
+
+    // 1. Panel de inicio
+    public void home(){
+        clearScreen();
         StdDraw.setPenColor(StdDraw.WHITE);
         StdDraw.text(50,75,"Tiles");
         BotonPlay b= new BotonPlay(50, 50, 24, 12);
@@ -49,8 +53,7 @@ public class Interfaz {
 
     //2. Opciones menu
     public void menu(){
-        StdDraw.clear();
-        StdDraw.picture(50,50,"pinkBackground.jpeg");
+        clearScreen();
         StdDraw.setPenColor(StdDraw.BLACK);
         StdDraw.text(50, 90, "Choose the mode");
         
@@ -64,10 +67,17 @@ public class Interfaz {
         StdDraw.pause(PASO_MS);
     }
 
+    //3. game
+    public void game(){
+        clearScreen();
+        
+    }
+
     // Juego
     public void juego(){
         iniciarGraficos();
         while(interfaz==0) home();
         while(interfaz==1) menu();
+        while(interfaz==2) game();
     }
 }
