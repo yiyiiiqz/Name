@@ -1,7 +1,6 @@
 package modelo;
 
 import java.awt.Color;
-
 import stdlib.StdDraw;
 import modelo.objetos.*;
 
