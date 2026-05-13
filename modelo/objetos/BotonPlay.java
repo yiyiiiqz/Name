@@ -33,7 +33,7 @@ public class BotonPlay extends Boton{
         if(StdDraw.mousePressed() && overButton()){
             while(StdDraw.mousePressed()) StdDraw.pause(20);
             //Añadir animación+ sonido
-            i.siguienteInterfaz();
+            i.siguienteInterfaz(1);
         }
     }
 }

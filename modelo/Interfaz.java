@@ -22,8 +22,8 @@ public class Interfaz {
         interfaz = 0;
     }
 
-    public void siguienteInterfaz() {
-        interfaz += 1;
+    public void siguienteInterfaz(int i) {
+        interfaz= i;
     }
 
     // Iniciar gráficos
@@ -40,14 +40,27 @@ public class Interfaz {
         StdDraw.picture(50, 50, "pinkBackground.jpeg");
     }
 
+    // Otras funciones útiles
+    public void setDificulty(int i){
+        dificulty=i;
+    }
+
+    // Crear objetos
+    BotonPlay botonPlay = new BotonPlay(50, 50, 24, 12);
+    BotonFacil facil = new BotonFacil("Begginer", 27, 45, 38, 70);
+    BotonDificil dificil = new BotonDificil("Hardcore", 73, 45, 38, 70);
+    BarraScore barraScore= new BarraScore();
+    
+
     // 1. Panel de inicio
     public void home() {
         clearScreen();
         StdDraw.setPenColor(StdDraw.WHITE);
         StdDraw.text(50, 75, "Tiles");
-        BotonPlay b = new BotonPlay(50, 50, 24, 12);
-        b.mouse();
-        b.interaccion(this);
+
+        botonPlay.mouse();
+        botonPlay.interaccion(this);
+
         StdDraw.show();
         StdDraw.pause(PASO_MS);
     }
@@ -57,9 +70,6 @@ public class Interfaz {
         clearScreen();
         StdDraw.setPenColor(StdDraw.BLACK);
         StdDraw.text(50, 90, "Choose the mode");
-
-        BotonFacil facil = new BotonFacil("Begginer", 27, 45, 38, 70);
-        BotonDificil dificil = new BotonDificil("Hardcore", 73, 45, 38, 70);
         facil.mouse();
         dificil.mouse();
         facil.interaccion(this);
@@ -72,7 +82,9 @@ public class Interfaz {
     // 3. game
     public void game() {
         clearScreen();
-
+        barraScore.pintar(this);
+        StdDraw.show();
+        StdDraw.pause(PASO_MS);
     }
 
     // Juego
@@ -80,8 +92,8 @@ public class Interfaz {
         iniciarGraficos();
         while (true) {
             if (interfaz == 0) home();
-            else if (interfaz == 1) menu();
-            else if (interfaz == 2) game();
+            if (interfaz == 1) menu();
+            if (interfaz == 2) game();
         }
     }
 }
