@@ -15,6 +15,8 @@ public class Interfaz {
     public static final int PASO_MS = 50; 
 
     public int interfaz;
+    public int dificulty;
+    public int points;
 
     public Interfaz(){
         interfaz=0;
@@ -69,7 +71,7 @@ public class Interfaz {
     //3. game
     public void game(){
         clearScreen();
-        
+
     }
 
     // Juego

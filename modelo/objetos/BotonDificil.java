@@ -33,11 +33,11 @@ public class BotonDificil extends Boton {
     }
 
     @Override
-    public void interaccion(Object o) {
-        Interfaz i= (Interfaz) o;
+    public void interaccion(Interfaz i) {
         if(StdDraw.mousePressed() && overButton()){
             //Añadir animación+ sonido
-            i.siguienteInterfaz(2);
+            i.dificulty= 1;
+            i.siguienteInterfaz();
         }
     }
 }

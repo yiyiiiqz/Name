@@ -1,6 +1,7 @@
 package modelo.objetos;
 
 import stdlib.StdDraw;
+import modelo.Interfaz;
 
 public abstract class Boton {
     protected String name;
@@ -28,5 +29,5 @@ public abstract class Boton {
 
     public abstract void mouse();
 
-    public abstract void interaccion(Object o);
+    public abstract void interaccion(Interfaz i);
 }
