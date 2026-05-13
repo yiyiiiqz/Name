@@ -25,7 +25,6 @@ public class BotonDificil extends Boton {
             StdDraw.filledRectangle(x,y,ancho/2,alto/2);
             StdDraw.setPenColor(StdDraw.PINK);
             StdDraw.text(x, y, name);
-            StdDraw.show();
         }
         else{
             pintar();
@@ -35,6 +34,7 @@ public class BotonDificil extends Boton {
     @Override
     public void interaccion(Interfaz i) {
         if(StdDraw.mousePressed() && overButton()){
+            while(StdDraw.mousePressed()) StdDraw.pause(20);
             //Añadir animación+ sonido
             i.dificulty= 1;
             i.siguienteInterfaz();
