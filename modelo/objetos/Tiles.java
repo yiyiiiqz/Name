@@ -4,7 +4,7 @@ import java.util.Random;
 
 import stdlib.StdRandom;
 
-public class Tiles {
+public class Tiles extends Figure{
     // 24.5*4 = 98
     // 1, 0.5
     // 24.25/2= 12.125

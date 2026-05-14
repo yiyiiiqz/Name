@@ -1,27 +1,13 @@
 package modelo.objetos;
 
-import stdlib.StdDraw;
 import modelo.Interfaz;
 
-public abstract class Boton {
+public abstract class Boton extends Figure{
     protected String name;
-    protected double x;
-    protected double y;
-    protected double ancho;
-    protected double alto;
 
-    public Boton(String n, double x, double y, double ancho, double alto) {
-        name = n;
-        this.x = x;
-        this.y = y;
-        this.ancho = ancho;
-        this.alto = alto;
-    }
-
-    public boolean overButton(){
-        double mx= StdDraw.mouseX();
-        double my= StdDraw.mouseY();
-        return mx>=x-ancho/2 && mx<=x+ancho/2 && my>=y-alto/2 && my<=y+alto/2;
+    public Boton(String n, double x, double y, double halfWidth, double halfHeight) {
+        super(x,y,halfWidth,halfHeight);
+        name=n;
     }
 
     public abstract void pintar();

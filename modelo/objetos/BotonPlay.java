@@ -4,22 +4,22 @@ import modelo.*;
 
 public class BotonPlay extends Boton{
 
-    public BotonPlay(double x, double y, double ancho, double alto){
-        super("Play", x, y, ancho, alto);
+    public BotonPlay(double x, double y, double halfWidth, double halfHeight){
+        super("Play", x, y, halfWidth, halfHeight);
     }
     
     @Override
     public void pintar() {
         StdDraw.setPenColor(StdDraw.WHITE);
-        StdDraw.rectangle(x,y,ancho/2,alto/2);
+        StdDraw.rectangle(x,y,halfWidth,halfHeight);
         StdDraw.text(x, y, name);
     }
 
     @Override
     public void mouse() {
-        if(overButton()){
+        if(overFigure()){
             StdDraw.setPenColor(StdDraw.WHITE);
-            StdDraw.filledRectangle(x,y,ancho/2,alto/2);
+            StdDraw.filledRectangle(x,y,halfWidth,halfHeight);
             StdDraw.setPenColor(StdDraw.PINK);
             StdDraw.text(x, y, name);
         }
@@ -30,7 +30,7 @@ public class BotonPlay extends Boton{
 
     @Override
     public void interaccion(Interfaz i) {
-        if(StdDraw.mousePressed() && overButton()){
+        if(StdDraw.mousePressed() && overFigure()){
             while(StdDraw.mousePressed()) StdDraw.pause(20);
             //Añadir animación+ sonido
             i.siguienteInterfaz(1);

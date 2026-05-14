@@ -12,7 +12,7 @@ public class BotonDificil extends Boton {
     @Override
     public void pintar() {
         StdDraw.setPenColor(StdDraw.RED);
-        StdDraw.filledRectangle(x, y, ancho/2, alto/2);
+        StdDraw.filledRectangle(x, y, halfWidth, halfHeight);
 
         StdDraw.setPenColor(StdDraw.BLACK);
         StdDraw.text(x, y, name);
@@ -20,9 +20,9 @@ public class BotonDificil extends Boton {
 
     @Override
     public void mouse() {
-        if(overButton()){
+        if(overFigure()){
             StdDraw.setPenColor(StdDraw.WHITE);
-            StdDraw.filledRectangle(x,y,ancho/2,alto/2);
+            StdDraw.filledRectangle(x,y,halfWidth,halfHeight);
             StdDraw.setPenColor(StdDraw.PINK);
             StdDraw.text(x, y, name);
         }
@@ -33,7 +33,7 @@ public class BotonDificil extends Boton {
 
     @Override
     public void interaccion(Interfaz i) {
-        if(StdDraw.mousePressed() && overButton()){
+        if(StdDraw.mousePressed() && overFigure()){
             while(StdDraw.mousePressed()) StdDraw.pause(20);
             //Añadir animación+ sonido
             i.setDificulty(1);

@@ -46,9 +46,9 @@ public class Interfaz {
     }
 
     // Crear objetos
-    BotonPlay botonPlay = new BotonPlay(50, 50, 24, 12);
-    BotonFacil facil = new BotonFacil("Begginer", 27, 45, 38, 70);
-    BotonDificil dificil = new BotonDificil("Hardcore", 73, 45, 38, 70);
+    BotonPlay botonPlay = new BotonPlay(50, 50, 12, 6);
+    BotonFacil facil = new BotonFacil("Begginer", 27, 45, 19, 35);
+    BotonDificil dificil = new BotonDificil("Hardcore", 73, 45, 19, 35);
     BarraScore barraScore = new BarraScore();
 
     // 1. Panel de inicio

@@ -1,24 +1,16 @@
 package modelo.objetos;
 
-import stdlib.StdDraw;
 import modelo.Interfaz;
 
-public abstract class Barra {
+public abstract class Barra extends Figure{
     protected int maxAtributo;
     protected String atributo;
-    protected double x;
-    protected double y;
-    protected double halfWidth;
-    protected double halfHeight;
     // private IList<Integer> contador;
 
     public Barra(int maxAtributo, String atributo, double x, double y, double halfWidth, double halfHeight){
+        super(x, y, halfWidth, halfHeight);
         this.maxAtributo=maxAtributo;
         this.atributo=atributo;
-        this.x=x;
-        this.y=y;
-        this.halfWidth=halfWidth;
-        this.halfHeight=halfHeight;
     }
 
     public abstract void moverContador(Interfaz i);

@@ -5,14 +5,14 @@ import stdlib.StdDraw;
 
 public class BotonFacil extends Boton {
 
-    public BotonFacil(String n, double x, double y, double ancho, double alto) {
-        super(n, x, y, ancho, alto);
+    public BotonFacil(String n, double x, double y, double halfWidth, double halfHeight) {
+        super(n, x, y, halfWidth, halfHeight);
     }
 
     @Override
     public void pintar() {
         StdDraw.setPenColor(StdDraw.GREEN);
-        StdDraw.filledRectangle(x, y, ancho/2, alto/2);
+        StdDraw.filledRectangle(x, y, halfWidth, halfHeight);
 
         StdDraw.setPenColor(StdDraw.BLACK);
         StdDraw.text(x,y, name);
@@ -20,9 +20,9 @@ public class BotonFacil extends Boton {
 
     @Override
     public void mouse() {
-        if(overButton()){
+        if(overFigure()){
             StdDraw.setPenColor(StdDraw.WHITE);
-            StdDraw.filledRectangle(x,y,ancho/2,alto/2);
+            StdDraw.filledRectangle(x,y,halfWidth,halfHeight);
             StdDraw.setPenColor(StdDraw.PINK);
             StdDraw.text(x, y, name);
         }
@@ -33,7 +33,7 @@ public class BotonFacil extends Boton {
 
     @Override
     public void interaccion(Interfaz i) {
-        if(StdDraw.mousePressed() && overButton()){
+        if(StdDraw.mousePressed() && overFigure()){
             while(StdDraw.mousePressed()) StdDraw.pause(20);
             //Añadir animación+ sonido
             i.setDificulty(0);
