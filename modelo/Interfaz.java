@@ -23,7 +23,7 @@ public class Interfaz {
     }
 
     public void siguienteInterfaz(int i) {
-        interfaz= i;
+        interfaz = i;
     }
 
     // Iniciar gráficos
@@ -41,16 +41,15 @@ public class Interfaz {
     }
 
     // Otras funciones útiles
-    public void setDificulty(int i){
-        dificulty=i;
+    public void setDificulty(int i) {
+        dificulty = i;
     }
 
     // Crear objetos
     BotonPlay botonPlay = new BotonPlay(50, 50, 24, 12);
     BotonFacil facil = new BotonFacil("Begginer", 27, 45, 38, 70);
     BotonDificil dificil = new BotonDificil("Hardcore", 73, 45, 38, 70);
-    BarraScore barraScore= new BarraScore();
-    
+    BarraScore barraScore = new BarraScore();
 
     // 1. Panel de inicio
     public void home() {
@@ -85,15 +84,27 @@ public class Interfaz {
         barraScore.pintar(this);
         StdDraw.show();
         StdDraw.pause(PASO_MS);
+
+        //Vidas (corazones)
+        HealthPoints hp = new HealthPoints(5);
+        hp.perderVida(); // Prueba de perder vida
+        while (true) {
+            hp.dibujar();
+            StdDraw.show();
+            StdDraw.pause(20);
+        }
     }
 
     // Juego
     public void juego() {
         iniciarGraficos();
         while (true) {
-            if (interfaz == 0) home();
-            if (interfaz == 1) menu();
-            if (interfaz == 2) game();
+            if (interfaz == 0)
+                home();
+            if (interfaz == 1)
+                menu();
+            if (interfaz == 2)
+                game();
         }
     }
 }
