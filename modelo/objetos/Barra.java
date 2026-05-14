@@ -21,12 +21,6 @@ public abstract class Barra {
         this.halfHeight=halfHeight;
     }
 
-    public void roundedCornersRectangle(double x, double y, double halfWidth, double halfHeight){
-        StdDraw.filledRectangle(x, y, halfWidth, halfHeight);
-        StdDraw.filledCircle(x-halfWidth,y,halfHeight);
-        StdDraw.filledCircle(x+halfWidth,y,halfHeight);
-    }
-
     public abstract void moverContador(Interfaz i);
 
     public abstract void pintar(Interfaz i);

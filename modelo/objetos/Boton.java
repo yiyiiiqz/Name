@@ -22,7 +22,6 @@ public abstract class Boton {
         double mx= StdDraw.mouseX();
         double my= StdDraw.mouseY();
         return mx>=x-ancho/2 && mx<=x+ancho/2 && my>=y-alto/2 && my<=y+alto/2;
-
     }
 
     public abstract void pintar();

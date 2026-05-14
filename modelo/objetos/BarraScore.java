@@ -12,16 +12,19 @@ public class BarraScore extends Barra {
     public void moverContador(Interfaz i) {
         //while(i.points<=maxAtributo){
             StdDraw.setPenColor(StdDraw.PINK);
-            roundedCornersRectangle(i.points/2+ 8, y, i.points, halfHeight-2);    
+            Figura f= new Figura();
+            f.roundedCornersRectangle(i.points/2+ 8, y, i.points, halfHeight-2);    
         //}
     }
 
     @Override
     public void pintar(Interfaz i) {
         StdDraw.setPenColor(StdDraw.GRAY);
-        roundedCornersRectangle(x, y, halfWidth, halfHeight);
+        Figura f= new Figura();
+        f.roundedCornersRectangle(x, y, halfWidth, halfHeight);
         StdDraw.setPenColor(StdDraw.WHITE);
-        roundedCornersRectangle(x, y, halfWidth-0.5, halfHeight-0.5);
+        Figura g= new Figura();
+        g.roundedCornersRectangle(x, y, halfWidth-0.5, halfHeight-0.5);
         moverContador(i);
     }
     
