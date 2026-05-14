@@ -1,34 +1,44 @@
+/*
+- En el constructor debes de usar el super y el this antes de declarar cualquier otra variable
+- No se puede usar rand.nextInt(n) en el constructor pero sí crear uno nuevo: new Random().nextInt(n);
+*/
+
 package modelo.objetos;
 
 import java.util.Random;
 
+import stdlib.StdDraw;
 import stdlib.StdRandom;
+import modelo.Interfaz;
 
 public class Tiles extends Figure{
     // 24.5*4 = 98
     // 1, 0.5
     // 24.25/2= 12.125
     private static final double[] POSITION_X={1+12.125, 1+24.25+0.5+12.125, 1+24.25+0.5+24.25+0.5+12.125};
-    private double x;
-    private double y;
-    private double halfWidth=12.125;
-    private double halfHeight=13.5;
-    private Random rand= new Random();
+    private boolean touched;
 
     public Tiles(){
-        x= POSITION_X[rand.nextInt(3)];
-        y= 100+halfHeight;
+        super(POSITION_X[new Random().nextInt(3)],100+13.5,12.125,13.5);
+        touched= false;
     }
 
-    public boolean touched(){
-        if(StdDraw)
+    public void touched(){
+        if(StdDraw.mousePressed() && overFigure()) touched=true;
     }
 
-    public void pintar(){
-        for(double i=y;i<0 && !touched; i--){
-            Figura f= new Figura();
-            f.roundedCornersRectangle(x,y,halfWidth,halfHeight);
+    public void pintar(Interfaz i){
+        for(double j=y;j>0 && !touched; j--){
+            StdDraw.clear();
+            roundedCornersRectangle(x,y,halfWidth,halfHeight);
+            StdDraw.show();
+            StdDraw.pause(20);
         }
+        addPoints(i);
+    }
+
+    public void addPoints(Interfaz i){
+        if(touched) i.addPoints();
     }
 
     public double getY(){

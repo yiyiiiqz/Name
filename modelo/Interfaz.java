@@ -20,6 +20,7 @@ public class Interfaz {
 
     public Interfaz() {
         interfaz = 0;
+        points=0;
     }
 
     public void siguienteInterfaz(int i) {
@@ -45,11 +46,16 @@ public class Interfaz {
         dificulty = i;
     }
 
+    public void addPoints(){
+        points+=1;
+    }
+
     // Crear objetos
     BotonPlay botonPlay = new BotonPlay(50, 50, 12, 6);
     BotonFacil facil = new BotonFacil("Begginer", 27, 45, 19, 35);
     BotonDificil dificil = new BotonDificil("Hardcore", 73, 45, 19, 35);
     BarraScore barraScore = new BarraScore();
+    HealthPoints hp = new HealthPoints(5);
 
     // 1. Panel de inicio
     public void home() {
@@ -80,19 +86,28 @@ public class Interfaz {
 
     // 3. game
     public void game() {
+        System.out.println("1");
         clearScreen();
+        System.out.println("1");
         barraScore.pintar(this);
-        StdDraw.show();
-        StdDraw.pause(PASO_MS);
+        System.out.println("1");
 
         //Vidas (corazones)
-        HealthPoints hp = new HealthPoints(5);
-        hp.perderVida(); // Prueba de perder vida
-        while (true) {
-            hp.dibujar();
-            StdDraw.show();
-            StdDraw.pause(20);
+        //hp.perderVida(); // Prueba de perder vida
+        //while (true) {
+        hp.dibujar();
+            //StdDraw.show();
+            //StdDraw.pause(20);
+        //}
+        System.out.println("1");
+
+        for(int i=0;i<4;i++){
+            Tiles t= new Tiles();
+            t.pintar(this);
         }
+        System.out.println("1");
+        StdDraw.show();
+        StdDraw.pause(PASO_MS);
     }
 
     // Juego
