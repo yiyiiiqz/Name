@@ -4,7 +4,7 @@ import stdlib.StdDraw;
 public class Line {
     private double x0=0;
     private double x1=100;
-    private double y0=5;
+    private double y0=15;
     private double y1=y0;
 
     public void pintar(){

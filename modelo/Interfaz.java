@@ -56,6 +56,7 @@ public class Interfaz {
     BotonDificil dificil = new BotonDificil("Hardcore", 73, 45, 19, 35);
     BarraScore barraScore = new BarraScore();
     HealthPoints hp = new HealthPoints(5);
+    Line l= new Line();
 
     // 1. Panel de inicio
     public void home() {
@@ -86,11 +87,8 @@ public class Interfaz {
 
     // 3. game
     public void game() {
-        System.out.println("1");
         clearScreen();
-        System.out.println("1");
         barraScore.pintar(this);
-        System.out.println("1");
 
         //Vidas (corazones)
         //hp.perderVida(); // Prueba de perder vida
@@ -99,13 +97,11 @@ public class Interfaz {
             //StdDraw.show();
             //StdDraw.pause(20);
         //}
-        System.out.println("1");
-
+        l.pintar();
         for(int i=0;i<4;i++){
             Tiles t= new Tiles();
-            t.pintar(this);
+            t.pintar(this, hp);
         }
-        System.out.println("1");
         StdDraw.show();
         StdDraw.pause(PASO_MS);
     }
