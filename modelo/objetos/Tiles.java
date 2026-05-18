@@ -33,7 +33,7 @@ public class Tiles extends Figure{
     }
 
     public void touched(HealthPoints h){
-        if(StdDraw.isKeyPressed(KEYS[random])){touched=true; System.out.println("a");}
+        if(StdDraw.isKeyPressed(KEYS[random]))touched=true;
         else h.perderVida();
     }
 
@@ -42,7 +42,7 @@ public class Tiles extends Figure{
         /*StdDraw.filledSquare(x,y,50);
         //StdDraw.filledCircle(x,y,4);
         actualizarY();*/
-        
+       
         for(double j=y;j>0 && !touched;j--){
             StdDraw.setPenColor(StdDraw.WHITE);
             StdDraw.filledSquare(x,j,halfHeight);

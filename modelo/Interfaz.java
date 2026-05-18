@@ -89,18 +89,25 @@ public class Interfaz {
         StdDraw.pause(PASO_MS);
     }
 
-    // 3. game
+    // 3. Cuenta atrás
+    public void temporizador(){
+        StdDraw.setPenColor(StdDraw.BLACK);
+        for(int i=3;i>=0;i--){
+            clearScreen();
+            StdDraw.text(50,48,"Controls: D,F,J,K");
+            StdDraw.text(50, 52, i+"");
+            StdDraw.pause(1000);
+            StdDraw.show();
+        }
+        siguienteInterfaz(3);
+
+    }
+
+    // 4. game
     public void game() {
         clearScreen();
         barraScore.pintar(this);
-
-        //Vidas (corazones)
-        //hp.perderVida(); // Prueba de perder vida
-        //while (true) {
         hp.dibujar();
-            //StdDraw.show();
-            //StdDraw.pause(20);
-        //}
         l.pintar();
         Tiles t= new Tiles();
         t.pintar(this, hp);
@@ -117,6 +124,8 @@ public class Interfaz {
             if (interfaz == 1)
                 menu();
             if (interfaz == 2)
+                temporizador();
+            if(interfaz == 3)
                 game();
         }
     }
