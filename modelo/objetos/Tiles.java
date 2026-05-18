@@ -29,15 +29,21 @@ public class Tiles extends Figure{
         else h.perderVida();
     }
 
+    public void actualizarY(){
+        y+=0.1;
+    }
+    
     public void pintar(Interfaz i, HealthPoints h){
-        for(double j=y;j>0 && !touched;j--){
+        StdDraw.filledCircle(x,y,4);
+        
+        /*for(double j=y;j>0 && !touched;j--){
 
             StdDraw.filledCircle(x,j,4);
             if(j==5) touched(h);
             StdDraw.show();
             StdDraw.pause(10);
         }
-        addPoints(i);
+        addPoints(i);*/
     }
 
     public void addPoints(Interfaz i){

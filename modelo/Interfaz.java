@@ -98,10 +98,12 @@ public class Interfaz {
             //StdDraw.pause(20);
         //}
         l.pintar();
-        for(int i=0;i<4;i++){
+        //for(int i=0;i<4;i++){
             Tiles t= new Tiles();
             t.pintar(this, hp);
-        }
+            t.actualizarY();
+            StdDraw.pause(PASO_MS);
+        //}
         StdDraw.show();
         StdDraw.pause(PASO_MS);
     }
