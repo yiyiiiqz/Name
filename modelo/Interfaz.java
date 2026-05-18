@@ -46,6 +46,10 @@ public class Interfaz {
         dificulty = i;
     }
 
+    public int getPoints(){
+        return points;
+    }
+
     public void addPoints(){
         points+=1;
     }
