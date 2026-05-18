@@ -18,10 +18,17 @@ public class Tiles extends Figure{
     private static final double[] POSITION_X={1+12.125, 1+24.25+0.5+12.125, 1+24.25+0.5+24.25+0.5+12.125,1+24.25+0.5+24.25+0.5+24.25+0.5+12.125};
     private static final char[] KEYS={'d','f','j','k'};
     private boolean touched;
+    private static int random;
 
     public Tiles(){
-        super(POSITION_X[new Random().nextInt(3)],100+13.5,0.01,4);
+        
+        super(POSITION_X[gen_random()],80,0.01,4);
         touched= false;
+    }
+
+    private static int gen_random() {
+        random= new Random().nextInt(4);
+        return random;
     }
 
     public void touched(HealthPoints h){
@@ -32,21 +39,27 @@ public class Tiles extends Figure{
     public void actualizarY(){
         y+=0.1;
     }
-    
-    public void pintar(Interfaz i, HealthPoints h){
-        StdDraw.filledCircle(x,y,4);
-        
-        /*for(double j=y;j>0 && !touched;j--){
 
-            StdDraw.filledCircle(x,j,4);
+    public void pintar(Interfaz i, HealthPoints h){
+        StdDraw.setPenColor(StdDraw.WHITE);
+        /*StdDraw.filledSquare(x,y,50);
+        //StdDraw.filledCircle(x,y,4);
+        actualizarY();*/
+        
+        for(double j=y;j>0 && !touched;j--){
+            StdDraw.setPenColor(StdDraw.WHITE);
+            StdDraw.filledSquare(x,j,4);
+            StdDraw.setPenColor(StdDraw.PINK);
+            StdDraw.filledSquare(x,j+7,4);
             if(j==5) touched(h);
             StdDraw.show();
             StdDraw.pause(10);
         }
-        addPoints(i);*/
+        addPoints(i);
     }
 
     public void addPoints(Interfaz i){
+
         if(touched) i.addPoints();
     }
 
