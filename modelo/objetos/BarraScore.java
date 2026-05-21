@@ -5,15 +5,19 @@ import stdlib.StdDraw;
 public class BarraScore extends Barra {
 
     public BarraScore(){
-        super(30, "Score",18,95,10,3);
+        super(13, "Score",18,95,11,3);
     }
 
     @Override
     public void moverContador(Interfaz i) {
-        //while(i.points<=maxAtributo){
-            StdDraw.setPenColor(StdDraw.PINK);
+        if(i.points<=maxAtributo){
+            StdDraw.setPenColor(StdDraw.BLUE);
             roundedCornersRectangle(i.points/2+ 8, y, i.points, halfHeight-2);    
-        //}
+        }
+        else{
+            StdDraw.setPenColor(StdDraw.BLUE);
+            roundedCornersRectangle(x, y, maxAtributo, halfHeight-2);
+        }
     }
 
     @Override
