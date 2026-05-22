@@ -31,11 +31,17 @@ public class Tiles extends Figure {
         touched = false;
     }
 
-    public void touched() {
+    public void touched(HealthPoints hp) {
         boolean teclaActual = StdDraw.isKeyPressed(KEYS[columnaRandom]);
-        if (y - halfHeight <= 15 && y + halfHeight >= 15) {  // comprueba si el tile está encima de la línea
+        boolean teclaActualGeneral = StdDraw.isKeyPressed(KEYS[0])||StdDraw.isKeyPressed(KEYS[1])||StdDraw.isKeyPressed(KEYS[2])||StdDraw.isKeyPressed(KEYS[3]);
+        boolean overTheLine = y - halfHeight <= 15 && y + halfHeight >= 15;
+        if (overTheLine) {
             if (teclaActual && !teclaPulsadaAntes) touched = true; //Si la tecla estaba pulsada en el frame anterior, ya no cuenta como touched
         }
+        else{
+            if(teclaActualGeneral) hp.perderVida();
+        }
+        /*else if(teclaActual && !teclaPulsadaAntes) hp.perderVida();*/
         teclaPulsadaAntes = teclaActual;
     }
 

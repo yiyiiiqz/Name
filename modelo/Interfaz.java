@@ -41,6 +41,19 @@ public class Interfaz {
         // StdDraw.picture(50, 50, "pinkBackground.jpeg");
     }
 
+    public void gameGraphics(){
+        StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
+        StdDraw.line(1+24.25,100,1+24.25,0);
+        StdDraw.line(1+24.25+0.5+24.25,100,1+24.25+0.5+24.25,0);
+        StdDraw.line(1+24.25+0.5+24.25+0.5+24.25,100,1+24.25+0.5+24.25+0.5+24.25,0);
+        StdDraw.setPenColor(StdDraw.BLACK);
+        StdDraw.text(1+12.125, 7, "D");
+        StdDraw.text(1+24.25+0.5+12.125, 7, "F");
+        StdDraw.text(1+24.25+0.5+24.25+0.5+12.125, 7, "J");
+        StdDraw.text(1+24.25+0.5+24.25+0.5+24.25+0.5+12.125, 7, "K");
+        StdDraw.show();
+    }
+
     // Otras funciones útiles
     public void setDificulty(int i) {
         dificulty = i;
@@ -58,7 +71,7 @@ public class Interfaz {
         return points;
     }
 
-    private int cambioDeVelocidadCadaX; // cada x puntos aumenta la velocidad
+    private int cambioDeVelocidadCadaX=1; // cada x puntos aumenta la velocidad
     public void addPoints() {
         points += 1;
         if (getPoints() % cambioDeVelocidadCadaX == 0)
@@ -121,12 +134,15 @@ public class Interfaz {
 
     public void game() {
         clearScreen();
+        gameGraphics();
+        StdDraw.setPenColor(StdDraw.BLACK);
+        StdDraw.text(10,90,"Score: " + points);
         barraScore.pintar(this);
         hp.dibujar();
         l.pintar();
 
         t.actualizar(velocidadTiles);
-        t.touched();
+        t.touched(hp);
         t.pintar();
 
         // Pulsado
