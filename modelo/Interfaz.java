@@ -20,7 +20,7 @@ public class Interfaz {
 
     public Interfaz() {
         interfaz = 0;
-        points=0;
+        points = 0;
     }
 
     public void siguienteInterfaz(int i) {
@@ -38,20 +38,31 @@ public class Interfaz {
 
     public void clearScreen() {
         StdDraw.clear(StdDraw.PINK);
-        //StdDraw.picture(50, 50, "pinkBackground.jpeg");
+        // StdDraw.picture(50, 50, "pinkBackground.jpeg");
     }
 
     // Otras funciones útiles
     public void setDificulty(int i) {
         dificulty = i;
+        if (dificulty == 1) {
+            velocidadTiles = 1.0;
+            cambioDeVelocidadCadaX = 8;
+        }
+        if (dificulty == 2) {
+            velocidadTiles = 1.5;
+            cambioDeVelocidadCadaX = 4;
+        }
     }
 
-    public int getPoints(){
+    public int getPoints() {
         return points;
     }
 
-    public void addPoints(){
-        points+=1;
+    private int cambioDeVelocidadCadaX; // cada x puntos aumenta la velocidad
+    public void addPoints() {
+        points += 1;
+        if (getPoints() % cambioDeVelocidadCadaX == 0)
+            velocidadTiles += 0.1; // DIFICULTAD DEL JUEGO
     }
 
     // Crear objetos
@@ -60,7 +71,7 @@ public class Interfaz {
     BotonDificil dificil = new BotonDificil("Hardcore", 73, 45, 19, 35);
     BarraScore barraScore = new BarraScore();
     HealthPoints hp = new HealthPoints(5);
-    Line l= new Line();
+    Line l = new Line();
 
     // 1. Panel de inicio
     public void home() {
@@ -88,14 +99,15 @@ public class Interfaz {
         StdDraw.show();
         StdDraw.pause(PASO_MS);
     }
+    // FALTA SETDIFICULTY SEGUN LA OPCION ELEGIDA
 
     // 3. Cuenta atrás
-    public void temporizador(){
+    public void temporizador() {
         StdDraw.setPenColor(StdDraw.BLACK);
-        for(int i=3;i>=0;i--){
+        for (int i = 3; i >= 0; i--) {
             clearScreen();
-            StdDraw.text(50,48,"Controls: D,F,J,K");
-            StdDraw.text(50, 52, i+"");
+            StdDraw.text(50, 48, "Controls: D,F,J,K");
+            StdDraw.text(50, 52, i + "");
             StdDraw.pause(1000);
             StdDraw.show();
         }
@@ -104,13 +116,32 @@ public class Interfaz {
     }
 
     // 4. game
+    Tiles t = new Tiles();
+    private double velocidadTiles = 1.5;
+
     public void game() {
         clearScreen();
         barraScore.pintar(this);
         hp.dibujar();
         l.pintar();
-        Tiles t= new Tiles();
-        t.pintar(this, hp);
+
+        t.actualizar(velocidadTiles);
+        t.touched();
+        t.pintar();
+
+        // Pulsado
+        if (t.isTouched()) {
+            addPoints();
+            t = new Tiles();
+        }
+
+        // Missed
+        if (t.getY() + t.getHalfHeight() < 15) { // ver si traspasa la linea
+            if (!t.isTouched())
+                hp.perderVida();
+            t = new Tiles(); // nuevo tile si el tile ha desaparecido
+        }
+
         StdDraw.show();
         StdDraw.pause(PASO_MS);
     }
@@ -125,7 +156,7 @@ public class Interfaz {
                 menu();
             if (interfaz == 2)
                 temporizador();
-            if(interfaz == 3)
+            if (interfaz == 3)
                 game();
         }
     }
