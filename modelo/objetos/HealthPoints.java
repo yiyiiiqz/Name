@@ -1,33 +1,37 @@
 package modelo.objetos;
 
+import java.util.Stack;
+
 import stdlib.*;
 
 public class HealthPoints {
     protected int vidasMax = 5;
-    protected int vidasActuales;
+    protected Stack<Integer> vidas;
     protected int contadorVidasUsadas; // para score
 
     public HealthPoints(int vidasMax) {
         this.vidasMax = vidasMax;
-        this.vidasActuales = vidasMax;
         this.contadorVidasUsadas = 0;
+
+        vidas = new Stack<>();
+        for (int i = 0; i < vidasMax; i++) vidas.push(1);
     }
 
     public void perderVida() {
-        if (vidasActuales > 0) {
-            vidasActuales--;
+        if (!vidas.isEmpty()) {
+            vidas.pop();
             contadorVidasUsadas++;
         }
     }
 
     public void ganarVida() {
-        if (vidasActuales < vidasMax) {
-            vidasActuales++;
+        if (vidas.size() < vidasMax) {
+            vidas.push(1);
         }
     }
 
     public int getVidasActuales() {
-        return vidasActuales;
+        return vidas.size();
     }
 
     public int getContadorVidasUsadas() {
@@ -43,7 +47,7 @@ public class HealthPoints {
 
         for (int i = 0; i < vidasMax; i++) {
             StdDraw.setPenColor(StdDraw.RED);
-            if (i < vidasActuales) StdDraw.filledCircle(xInicio + i * separacion, y, radio);
+            if (i < vidas.size()) StdDraw.filledCircle(xInicio + i * separacion, y, radio);
             else StdDraw.circle(xInicio + i * separacion, y, radio);
         }
     }
