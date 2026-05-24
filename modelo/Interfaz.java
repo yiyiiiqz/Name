@@ -7,16 +7,16 @@ import modelo.objetos.*;
 public class Interfaz {
 
     // Atributos
-    public static final int XMAX = 600;
-    public static final int YMAX = 600;
-    public static final int ESCALA = 100;
-    public static final Color DEFAULT_COLOR = StdDraw.BLACK;
-    // public static final int ESPACIO = 32;
+    private static final int XMAX = 600;
+    private static final int YMAX = 600;
+    private static final int ESCALA = 100;
+    private static final Color DEFAULT_COLOR = StdDraw.BLACK;
     public static final int PASO_MS = 50;
 
-    public int interfaz;
-    public int dificulty;
-    public int points;
+    private int interfaz;
+    private int dificulty;
+    private int points;
+    private boolean teclaIncorrectaAntes;
 
     public Interfaz() {
         interfaz = 0;
@@ -152,15 +152,43 @@ public class Interfaz {
         }
 
         // Missed
-        if (t.getY() + t.getHalfHeight() < 15) { // ver si traspasa la linea
+        /*
+        2. En medio: Tecla incorrecta
+        3. Después: Se ha pasado
+        */
+        
+        boolean teclaIncorrecta= t.wrongKeyPressed();
+        if(t.overLine()){
+            if(teclaIncorrecta && !teclaIncorrectaAntes){
+                t.setPenalizadoAntes(true);
+                hp.perderVida();
+                t= new Tiles();
+            }
+            teclaIncorrectaAntes=teclaIncorrecta;
+        }
+
+        if (t.afterLine()&&!t.getPenalizadoAntes()) {
             if (!t.isTouched())
                 hp.perderVida();
             t = new Tiles(); // nuevo tile si el tile ha desaparecido
         }
 
+        // Game over
+        if(hp.getVidasActuales()==0){
+            siguienteInterfaz(4);
+        }
+
         StdDraw.show();
         StdDraw.pause(PASO_MS);
     }
+
+    // 5. Pop up
+    public void popUp(){
+        StdDraw.filledRectangle(50, 50, 20,13);
+        StdDraw.text(50,57,"¿Desea restaurar el progreso?");
+        // Añadir 2 botones (No-> quinta interfaz, sí-> vídeo-> tercera interfaz)
+    }
+    
 
     // Juego
     public void juego() {
