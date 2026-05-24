@@ -10,9 +10,9 @@ public class BarraScore extends Barra {
 
     @Override
     public void moverContador(Interfaz i) {
-        if(i.points<=maxAtributo){
+        if(i.getPoints()<=maxAtributo){
             StdDraw.setPenColor(StdDraw.BLUE);
-            roundedCornersRectangle(i.points/2+ 8, y, i.points, halfHeight-2);    
+            roundedCornersRectangle(i.getPoints()/2+ 8, y, i.getPoints(), halfHeight-2);    
         }
         else{
             StdDraw.setPenColor(StdDraw.BLUE);

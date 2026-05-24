@@ -11,7 +11,6 @@ import java.util.Random;
 import java.awt.event.KeyEvent;
 
 import stdlib.StdDraw;
-import modelo.Interfaz;
 
 public class Tiles extends Figure {
     // 24.5*4 = 98
@@ -23,6 +22,7 @@ public class Tiles extends Figure {
     private boolean touched;
     private int columnaRandom;
     private boolean teclaPulsadaAntes; //Evitar mantener pulsado
+    private boolean penalizadoAntes;
 
     public Tiles() {
         super(0, 80, 0.01, 4);
@@ -33,20 +33,28 @@ public class Tiles extends Figure {
 
     public void touched(HealthPoints hp) {
         boolean teclaActual = StdDraw.isKeyPressed(KEYS[columnaRandom]);
-        boolean teclaActualGeneral = StdDraw.isKeyPressed(KEYS[0])||StdDraw.isKeyPressed(KEYS[1])||StdDraw.isKeyPressed(KEYS[2])||StdDraw.isKeyPressed(KEYS[3]);
-        boolean overTheLine = y - halfHeight <= 15 && y + halfHeight >= 15;
-        if (overTheLine) {
+        if (overLine()) {
             if (teclaActual && !teclaPulsadaAntes) touched = true; //Si la tecla estaba pulsada en el frame anterior, ya no cuenta como touched
         }
-        else{
-            if(teclaActualGeneral) hp.perderVida();
-        }
-        /*else if(teclaActual && !teclaPulsadaAntes) hp.perderVida();*/
         teclaPulsadaAntes = teclaActual;
     }
 
     public boolean isTouched(){
         return touched;
+    }
+
+    public boolean wrongKeyPressed(){
+        boolean isKeyPressed= StdDraw.isKeyPressed(KEYS[0])||StdDraw.isKeyPressed(KEYS[1])||StdDraw.isKeyPressed(KEYS[2])||StdDraw.isKeyPressed(KEYS[3]);
+        boolean correctKeyPressed= StdDraw.isKeyPressed(columnaRandom);
+        return isKeyPressed && !correctKeyPressed;
+    }
+
+    public boolean afterLine(){
+        return y+halfHeight<15;
+    }
+    
+    public boolean overLine(){
+        return y - halfHeight <= 15 && y + halfHeight >= 15;
     }
 
     public void pintar() {
@@ -58,32 +66,23 @@ public class Tiles extends Figure {
         y -= velocidad;
     }
 
-    /*
-     * public void pintar(Interfaz i, HealthPoints h){
-     * StdDraw.setPenColor(StdDraw.WHITE);
-     * /*StdDraw.filledSquare(x,y,50);
-     * //StdDraw.filledCircle(x,y,4);
-     * actualizarY();
-     * 
-     * for(double j=y;j>0 && !touched;j--){
-     * StdDraw.setPenColor(StdDraw.WHITE);
-     * StdDraw.filledSquare(x,j,halfHeight);
-     * StdDraw.setPenColor(StdDraw.PINK);
-     * StdDraw.filledSquare(x,j+7,halfHeight);
-     * if(j-halfHeight<=15 && j+halfHeight>=15) touched(h);
-     * StdDraw.show();
-     * StdDraw.pause(10);
-     * }
-     * addPoints(i, h);
-     * }
-     */
-
-
     public double getY() {
         return y;
     }
 
     public double getHalfHeight() {
         return halfHeight;
+    }
+
+    public int getKey(){
+        return KEYS[columnaRandom];
+    }
+
+    public void setPenalizadoAntes(boolean b){
+        penalizadoAntes= b;
+    }
+
+    public boolean getPenalizadoAntes(){
+        return penalizadoAntes;
     }
 }
