@@ -57,11 +57,11 @@ public class Interfaz {
     // Otras funciones útiles
     public void setDificulty(int i) {
         dificulty = i;
-        if (dificulty == 1) {
+        if (dificulty == 0) {
             velocidadTiles = 1.0;
             cambioDeVelocidadCadaX = 8;
         }
-        if (dificulty == 2) {
+        if (dificulty == 1) {
             velocidadTiles = 1.5;
             cambioDeVelocidadCadaX = 4;
         }
