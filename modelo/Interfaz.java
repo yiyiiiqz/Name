@@ -41,16 +41,16 @@ public class Interfaz {
         // StdDraw.picture(50, 50, "pinkBackground.jpeg");
     }
 
-    public void gameGraphics(){
+    public void gameGraphics() {
         StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
-        StdDraw.line(1+24.25,100,1+24.25,0);
-        StdDraw.line(1+24.25+0.5+24.25,100,1+24.25+0.5+24.25,0);
-        StdDraw.line(1+24.25+0.5+24.25+0.5+24.25,100,1+24.25+0.5+24.25+0.5+24.25,0);
+        StdDraw.line(1 + 24.25, 100, 1 + 24.25, 0);
+        StdDraw.line(1 + 24.25 + 0.5 + 24.25, 100, 1 + 24.25 + 0.5 + 24.25, 0);
+        StdDraw.line(1 + 24.25 + 0.5 + 24.25 + 0.5 + 24.25, 100, 1 + 24.25 + 0.5 + 24.25 + 0.5 + 24.25, 0);
         StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.text(1+12.125, 7, "D");
-        StdDraw.text(1+24.25+0.5+12.125, 7, "F");
-        StdDraw.text(1+24.25+0.5+24.25+0.5+12.125, 7, "J");
-        StdDraw.text(1+24.25+0.5+24.25+0.5+24.25+0.5+12.125, 7, "K");
+        StdDraw.text(1 + 12.125, 7, "D");
+        StdDraw.text(1 + 24.25 + 0.5 + 12.125, 7, "F");
+        StdDraw.text(1 + 24.25 + 0.5 + 24.25 + 0.5 + 12.125, 7, "J");
+        StdDraw.text(1 + 24.25 + 0.5 + 24.25 + 0.5 + 24.25 + 0.5 + 12.125, 7, "K");
         StdDraw.show();
     }
 
@@ -71,20 +71,39 @@ public class Interfaz {
         return points;
     }
 
-    private int cambioDeVelocidadCadaX=1; // cada x puntos aumenta la velocidad
+    private int cambioDeVelocidadCadaX = 1; // cada x puntos aumenta la velocidad
+
     public void addPoints() {
         points += 1;
         if (getPoints() % cambioDeVelocidadCadaX == 0)
             velocidadTiles += 0.1; // DIFICULTAD DEL JUEGO
     }
 
+    public void revivir() {
+        if (!anuncioUsado)
+            siguienteInterfaz(6); // puede ver anuncio
+        else
+            siguienteInterfaz(5); // ya lo ha usado y muere directamente
+    }
+
+    public void salirPartida() {
+        siguienteInterfaz(5);
+    }
+
+    public boolean isAnuncioUsado() {
+        return anuncioUsado;
+    }
+
     // Crear objetos
     BotonPlay botonPlay = new BotonPlay(50, 50, 12, 6);
     BotonFacil facil = new BotonFacil("Begginer", 27, 45, 19, 35);
     BotonDificil dificil = new BotonDificil("Hardcore", 73, 45, 19, 35);
+    BotonAd botonAd = new BotonAd("Sí", 30, 45, 10, 5);
+    BotonNo botonNo = new BotonNo("No", 70, 45, 10, 5);
     BarraScore barraScore = new BarraScore();
     HealthPoints hp = new HealthPoints(5);
     Line l = new Line();
+    Boolean anuncioUsado = false;
 
     // 1. Panel de inicio
     public void home() {
@@ -112,7 +131,6 @@ public class Interfaz {
         StdDraw.show();
         StdDraw.pause(PASO_MS);
     }
-    // FALTA SETDIFICULTY SEGUN LA OPCION ELEGIDA
 
     // 3. Cuenta atrás
     public void temporizador() {
@@ -136,7 +154,7 @@ public class Interfaz {
         clearScreen();
         gameGraphics();
         StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.text(10,90,"Score: " + points);
+        StdDraw.text(10, 90, "Score: " + points);
         barraScore.pintar(this);
         hp.dibujar();
         l.pintar();
@@ -153,29 +171,30 @@ public class Interfaz {
 
         // Missed
         /*
-        2. En medio: Tecla incorrecta
-        3. Después: Se ha pasado
-        */
-        
-        boolean teclaIncorrecta= t.wrongKeyPressed();
-        if(t.overLine()){
-            if(teclaIncorrecta && !teclaIncorrectaAntes){
+         * 2. En medio: Tecla incorrecta
+         * 3. Después: Se ha pasado
+         */
+
+        boolean teclaIncorrecta = t.wrongKeyPressed();
+        if (t.overLine()) {
+            if (teclaIncorrecta && !teclaIncorrectaAntes) {
                 t.setPenalizadoAntes(true);
                 hp.perderVida();
-                t= new Tiles();
+                t = new Tiles();
             }
-            teclaIncorrectaAntes=teclaIncorrecta;
+            teclaIncorrectaAntes = teclaIncorrecta;
         }
 
-        if (t.afterLine()&&!t.getPenalizadoAntes()) {
+        if (t.afterLine() && !t.getPenalizadoAntes()) {
             if (!t.isTouched())
                 hp.perderVida();
             t = new Tiles(); // nuevo tile si el tile ha desaparecido
         }
 
         // Game over
-        if(hp.getVidasActuales()==0){
-            siguienteInterfaz(4);
+        if (hp.getVidasActuales() == 0) {
+            if (!anuncioUsado) siguienteInterfaz(4); // primera vez, al popUp
+            else siguienteInterfaz(5); // segunda vez, game over directo
         }
 
         StdDraw.show();
@@ -183,12 +202,43 @@ public class Interfaz {
     }
 
     // 5. Pop up
-    public void popUp(){
-        StdDraw.filledRectangle(50, 50, 20,13);
-        StdDraw.text(50,57,"¿Desea restaurar el progreso?");
-        // Añadir 2 botones (No-> quinta interfaz, sí-> vídeo-> tercera interfaz)
+    public void popUp() {
+        clearScreen();
+
+        StdDraw.setPenColor(StdDraw.BLACK);
+        StdDraw.filledRectangle(50, 50, 20, 13);
+        StdDraw.setPenColor(StdDraw.WHITE);
+        StdDraw.text(50, 57, "¿Desea restaurar el progreso?");
+
+        botonAd.mouse();
+        botonNo.mouse();
+
+        botonAd.interaccion(this);
+        botonNo.interaccion(this);
+
+        StdDraw.show();
+        StdDraw.pause(PASO_MS);
     }
-    
+
+    // 6. Game over
+    public void gameOver() {
+    }
+
+    // 7. Anuncio
+    public void anuncio() {
+        clearScreen();
+        StdDraw.setPenColor(StdDraw.BLACK);
+        StdDraw.text(50, 60, "REPRODUCIENDO ANUNCIO...");
+
+        // ANUNCIOS
+        StdDraw.pause(1000);
+
+        anuncioUsado = true;
+        hp.ganarVida();
+        t = new Tiles();
+
+        siguienteInterfaz(3); // volver al juego
+    }
 
     // Juego
     public void juego() {
@@ -202,6 +252,12 @@ public class Interfaz {
                 temporizador();
             if (interfaz == 3)
                 game();
+            if (interfaz == 4)
+                popUp();
+            if (interfaz == 5)
+                gameOver();
+            if (interfaz == 6)
+                anuncio();
         }
     }
 }
