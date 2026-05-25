@@ -60,6 +60,9 @@ public class Tiles extends Figure {
     public void pintar() {
         StdDraw.setPenColor(StdDraw.WHITE);
         StdDraw.filledSquare(x, y, halfHeight);
+
+        StdDraw.setPenColor(StdDraw.BLACK);
+        StdDraw.square(x, y, halfHeight);
     }
 
     public void actualizar(double velocidad) {
