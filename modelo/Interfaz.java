@@ -12,11 +12,13 @@ public class Interfaz {
     private static final int ESCALA = 100;
     private static final Color DEFAULT_COLOR = StdDraw.BLACK;
     public static final int PASO_MS = 50;
+    public static final int PASO_MS_ANUNCIO = 100;
 
     private int interfaz;
     private int dificulty;
     private int points;
     private boolean teclaIncorrectaAntes;
+    private int cambioDeVelocidadCadaX = 1; // cada x puntos aumenta la velocidad
 
     public Interfaz() {
         interfaz = 0;
@@ -27,12 +29,28 @@ public class Interfaz {
         interfaz = i;
     }
 
+    public void siguienteInterfaz(Boton b){
+        if(b instanceof BotonPlay)
+            interfaz=1;
+        if(b instanceof BotonFacil){
+            interfaz=2;
+            setDificulty(0);;
+        }
+        if(b instanceof BotonDificil){
+            interfaz=2;
+            setDificulty(1);;
+        }
+        if(b instanceof BotonAd)
+            interfaz= 6;
+        if(b instanceof BotonNo)
+            interfaz= 5;
+    }
+
     // Iniciar gráficos
     public void iniciarGraficos() {
         StdDraw.enableDoubleBuffering();
         StdDraw.setCanvasSize(XMAX, YMAX);
         StdDraw.setScale(0, ESCALA);
-        // StdDraw.setPenRadius(5);
         StdDraw.setPenColor(DEFAULT_COLOR);
     }
 
@@ -55,6 +73,7 @@ public class Interfaz {
     }
 
     // Otras funciones útiles
+
     public void setDificulty(int i) {
         dificulty = i;
         if (dificulty == 0) {
@@ -67,31 +86,20 @@ public class Interfaz {
         }
     }
 
-    public int getPoints() {
-        return points;
-    }
-
-    private int cambioDeVelocidadCadaX = 1; // cada x puntos aumenta la velocidad
-
     public void addPoints() {
         points += 1;
         if (getPoints() % cambioDeVelocidadCadaX == 0)
             velocidadTiles += 0.1; // DIFICULTAD DEL JUEGO
     }
 
-    public void revivir() {
-        if (!anuncioUsado)
-            siguienteInterfaz(6); // puede ver anuncio
-        else
-            siguienteInterfaz(5); // ya lo ha usado y muere directamente
-    }
-
-    public void salirPartida() {
-        siguienteInterfaz(5);
-    }
+    // Getters
 
     public boolean isAnuncioUsado() {
         return anuncioUsado;
+    }
+
+    public int getPoints() {
+        return points;
     }
 
     // Crear objetos
@@ -105,7 +113,7 @@ public class Interfaz {
     Line l = new Line();
     Boolean anuncioUsado = false;
 
-    // 1. Panel de inicio
+    // 0. Panel de inicio
     public void home() {
         clearScreen();
         StdDraw.setPenColor(StdDraw.WHITE);
@@ -118,7 +126,7 @@ public class Interfaz {
         StdDraw.pause(PASO_MS);
     }
 
-    // 2. Opciones menu
+    // 1. Opciones menu
     public void menu() {
         clearScreen();
         StdDraw.setPenColor(StdDraw.BLACK);
@@ -132,7 +140,7 @@ public class Interfaz {
         StdDraw.pause(PASO_MS);
     }
 
-    // 3. Cuenta atrás
+    // 2. Cuenta atrás
     public void temporizador() {
         StdDraw.setPenColor(StdDraw.BLACK);
         for (int i = 3; i >= 0; i--) {
@@ -146,7 +154,7 @@ public class Interfaz {
 
     }
 
-    // 4. game
+    // 3. game
     Tiles t = new Tiles();
     private double velocidadTiles = 1.5;
 
@@ -170,10 +178,6 @@ public class Interfaz {
         }
 
         // Missed
-        /*
-         * 2. En medio: Tecla incorrecta
-         * 3. Después: Se ha pasado
-         */
 
         boolean teclaIncorrecta = t.wrongKeyPressed();
         if (t.overLine()) {
@@ -201,7 +205,7 @@ public class Interfaz {
         StdDraw.pause(PASO_MS);
     }
 
-    // 5. Pop up
+    // 4. Pop up
     public void popUp() {
         clearScreen();
 
@@ -220,24 +224,30 @@ public class Interfaz {
         StdDraw.pause(PASO_MS);
     }
 
-    // 6. Game over
+    // 5. Game over
     public void gameOver() {
     }
 
-    // 7. Anuncio
+    // 6. Anuncio
     public void anuncio() {
         clearScreen();
-        StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.text(50, 60, "REPRODUCIENDO ANUNCIO...");
 
         // ANUNCIOS
-        StdDraw.pause(1000);
+        for(int i=1;i<36;i++){
+            String s= "anuncio/"+i+".jpeg";
+            StdDraw.picture(50,50,s);
+            StdDraw.setPenColor(StdDraw.YELLOW);
+            StdDraw.line(0,100,i/36*100,100);
+            StdDraw.text(50,50,"Reproduciendo anuncio...");
+            StdDraw.show();
+            StdDraw.pause(PASO_MS_ANUNCIO);
+        }
 
         anuncioUsado = true;
         hp.ganarVida();
         t = new Tiles();
 
-        siguienteInterfaz(3); // volver al juego
+        siguienteInterfaz(2); // Volver al juego
     }
 
     // Juego

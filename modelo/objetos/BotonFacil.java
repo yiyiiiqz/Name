@@ -36,8 +36,7 @@ public class BotonFacil extends Boton {
         if(StdDraw.mousePressed() && overFigure()){
             while(StdDraw.mousePressed()) StdDraw.pause(20);
             //Añadir animación+ sonido
-            i.setDificulty(0);
-            i.siguienteInterfaz(2);
+            i.siguienteInterfaz(this);
         }
     }
 }

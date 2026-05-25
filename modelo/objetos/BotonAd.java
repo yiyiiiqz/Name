@@ -43,7 +43,7 @@ public class BotonAd extends Boton {
     public void interaccion(Interfaz i) {
         if(StdDraw.mousePressed() && overFigure()){
             while(StdDraw.mousePressed()) StdDraw.pause(20);
-            i.revivir();// anuncio
+            i.siguienteInterfaz(this);;// anuncio
         }
     }
 }

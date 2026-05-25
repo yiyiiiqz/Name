@@ -35,7 +35,7 @@ public class BotonNo extends Boton {
     public void interaccion(Interfaz i) {
         if(StdDraw.mousePressed() && overFigure()){
             while(StdDraw.mousePressed()) StdDraw.pause(20);
-            i.siguienteInterfaz(5); // game over
+            i.siguienteInterfaz(this); // game over
         }
     }
 }

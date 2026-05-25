@@ -1,4 +1,5 @@
 package modelo.objetos;
+
 import modelo.Interfaz;
 import stdlib.StdDraw;
 
