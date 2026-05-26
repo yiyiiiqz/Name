@@ -12,7 +12,6 @@ public class Interfaz {
     private static final int ESCALA = 100;
     private static final Color DEFAULT_COLOR = StdDraw.BLACK;
     public static final int PASO_MS = 50;
-    public static final int PASO_MS_ANUNCIO = 100;
 
     private int interfaz;
     private int dificulty;
@@ -29,6 +28,7 @@ public class Interfaz {
         interfaz = i;
     }
 
+    /* Correción del proyecto según el uso de la herencia para distinguir los elementos: */
     public void siguienteInterfaz(Boton b){
         if(b instanceof BotonPlay)
             interfaz=1;
@@ -226,22 +226,21 @@ public class Interfaz {
 
     // 5. Game over
     public void gameOver() {
+        StdDraw.setPenColor(StdDraw.WHITE);
+        StdDraw.filledSquare(50, 50, 25);
+        StdDraw.setPenColor(StdDraw.BLACK);
+        StdDraw.text(50,55,"Game over");
+        StdDraw.text(50,45,"Points obtained: "+ points);
+        StdDraw.show();
+        StdDraw.pause(PASO_MS);
     }
 
     // 6. Anuncio
     public void anuncio() {
         clearScreen();
 
-        // ANUNCIOS
-        for(int i=1;i<36;i++){
-            String s= "anuncio/"+i+".jpeg";
-            StdDraw.picture(50,50,s);
-            StdDraw.setPenColor(StdDraw.YELLOW);
-            StdDraw.line(0,100,i/36*100,100);
-            StdDraw.text(50,50,"Reproduciendo anuncio...");
-            StdDraw.show();
-            StdDraw.pause(PASO_MS_ANUNCIO);
-        }
+        Anuncio ad= new Anuncio();
+        ad.reproduceAd();
 
         anuncioUsado = true;
         hp.ganarVida();
