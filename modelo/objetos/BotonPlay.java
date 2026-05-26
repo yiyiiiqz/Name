@@ -20,7 +20,7 @@ public class BotonPlay extends Boton{
         if(overFigure()){
             StdDraw.setPenColor(StdDraw.WHITE);
             StdDraw.filledRectangle(x,y,halfWidth,halfHeight);
-            StdDraw.setPenColor(StdDraw.PINK);
+            StdDraw.setPenColor(StdDraw.BOOK_LIGHT_BLUE);
             StdDraw.text(x, y, name);
         }
         else{

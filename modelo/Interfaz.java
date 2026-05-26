@@ -6,7 +6,7 @@ import modelo.objetos.*;
 
 public class Interfaz {
 
-    // Atributos
+    // ATRIBUTOS
     private static final int XMAX = 600;
     private static final int YMAX = 600;
     private static final int ESCALA = 100;
@@ -14,10 +14,12 @@ public class Interfaz {
     public static final int PASO_MS = 50;
 
     private int interfaz;
-    private int dificulty;
     private int points;
-    private boolean teclaIncorrectaAntes;
+    private int dificulty;
     private int cambioDeVelocidadCadaX = 1; // cada x puntos aumenta la velocidad
+    private boolean teclaIncorrectaAntes; // Para evitar debounce entre frames
+    
+    // FUNCIONES BÁSICAS
 
     public Interfaz() {
         interfaz = 0;
@@ -28,7 +30,7 @@ public class Interfaz {
         interfaz = i;
     }
 
-    /* Correción del proyecto según el uso de la herencia para distinguir los elementos: */
+    /* Correción del proyecto: uso de la HERENCIA para distinguir los elementos hijos de un mismo padre*/
     public void siguienteInterfaz(Boton b){
         if(b instanceof BotonPlay)
             interfaz=1;
@@ -46,7 +48,7 @@ public class Interfaz {
             interfaz= 5;
     }
 
-    // Iniciar gráficos
+    // INICIAR GRÁFICOS
     public void iniciarGraficos() {
         StdDraw.enableDoubleBuffering();
         StdDraw.setCanvasSize(XMAX, YMAX);
@@ -56,7 +58,7 @@ public class Interfaz {
 
     public void clearScreen() {
         StdDraw.clear(StdDraw.PINK);
-        // StdDraw.picture(50, 50, "pinkBackground.jpeg");
+        StdDraw.picture(50, 50, "blueGradient.jpg");
     }
 
     public void gameGraphics() {
@@ -72,7 +74,7 @@ public class Interfaz {
         StdDraw.show();
     }
 
-    // Otras funciones útiles
+    // OTRAS FUNCIONES ÚTILES
 
     public void setDificulty(int i) {
         dificulty = i;
@@ -92,7 +94,7 @@ public class Interfaz {
             velocidadTiles += 0.1; // DIFICULTAD DEL JUEGO
     }
 
-    // Getters
+    // GETTERS
 
     public boolean isAnuncioUsado() {
         return anuncioUsado;
@@ -102,8 +104,8 @@ public class Interfaz {
         return points;
     }
 
-    // Crear objetos
-    BotonPlay botonPlay = new BotonPlay(50, 50, 12, 6);
+    // CREAR OBJETOS
+    BotonPlay botonPlay = new BotonPlay(50, 40, 10, 3);
     BotonFacil facil = new BotonFacil("Begginer", 27, 45, 19, 35);
     BotonDificil dificil = new BotonDificil("Hardcore", 73, 45, 19, 35);
     BotonAd botonAd = new BotonAd("Sí", 30, 45, 10, 5);
@@ -113,11 +115,12 @@ public class Interfaz {
     Line l = new Line();
     Boolean anuncioUsado = false;
 
+    // INTERFACES
+
     // 0. Panel de inicio
     public void home() {
         clearScreen();
-        StdDraw.setPenColor(StdDraw.WHITE);
-        StdDraw.text(50, 75, "Tiles");
+        StdDraw.picture(50, 50, "HomeScreen.png");
 
         botonPlay.mouse();
         botonPlay.interaccion(this);
@@ -249,7 +252,7 @@ public class Interfaz {
         siguienteInterfaz(2); // Volver al juego
     }
 
-    // Juego
+    // JUEGO
     public void juego() {
         iniciarGraficos();
         while (true) {
