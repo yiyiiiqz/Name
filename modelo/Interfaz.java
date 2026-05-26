@@ -229,9 +229,9 @@ public class Interfaz {
 
     // 5. Game over
     public void gameOver() {
-        StdDraw.setPenColor(StdDraw.WHITE);
-        StdDraw.filledSquare(50, 50, 25);
         StdDraw.setPenColor(StdDraw.BLACK);
+        StdDraw.filledSquare(50, 50, 25);
+        StdDraw.setPenColor(StdDraw.RED);
         StdDraw.text(50,55,"Game over");
         StdDraw.text(50,45,"Points obtained: "+ points);
         StdDraw.show();
