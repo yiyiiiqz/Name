@@ -1,2 +1,0 @@
-Si no se ejecuta algo es porque hay algún error silencioso,
-puedes buscar el error con println para ver hasta qué parte del código se ejecuta.
