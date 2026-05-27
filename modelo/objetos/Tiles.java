@@ -23,9 +23,10 @@ public class Tiles extends Figure {
     private int columnaRandom;
     private boolean teclaPulsadaAntes; //Evitar mantener pulsado
     private boolean penalizadoAntes;
+    private String tilesImage= "Tiles.png";
 
     public Tiles() {
-        super(0, 80, 0.01, 4);
+        super(0, 80, 5, 5);
         columnaRandom = new Random().nextInt(4);
         x = POSITION_X[columnaRandom];
         touched = false;
@@ -58,11 +59,8 @@ public class Tiles extends Figure {
     }
 
     public void pintar() {
-        StdDraw.setPenColor(StdDraw.WHITE);
-        StdDraw.filledSquare(x, y, halfHeight);
-
-        StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.square(x, y, halfHeight);
+        StdDraw.picture(x,y,tilesImage,halfWidth*2,halfHeight*2);
+        StdDraw.show();
     }
 
     public void actualizar(double velocidad) {

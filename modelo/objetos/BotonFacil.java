@@ -5,8 +5,8 @@ import stdlib.StdDraw;
 
 public class BotonFacil extends Boton {
 
-    private String imagenFacil = "beginner.png";
-    private String imagenFacil2 = "beginner2.png";
+    private String imagenFacil = "Easy.png";
+    private String imagenFacil2 = "EasyHover.png";
 
     public BotonFacil(String n, double x, double y, double halfWidth, double halfHeight) {
         super(n, x, y, halfWidth, halfHeight);
@@ -15,23 +15,12 @@ public class BotonFacil extends Boton {
     @Override
     public void pintar() {
         StdDraw.picture(x, y, imagenFacil, halfWidth * 2, halfHeight * 2);
-        /*
-         * StdDraw.setPenColor(StdDraw.GREEN);
-         * StdDraw.filledRectangle(x, y, halfWidth, halfHeight);
-         * 
-         * StdDraw.setPenColor(StdDraw.BLACK);
-         * StdDraw.text(x,y, name);
-         */
     }
 
     @Override
     public void mouse() {
         if (overFigure()) {
             StdDraw.picture(x, y, imagenFacil2, halfWidth * 2, halfHeight * 2);
-            /*StdDraw.setPenColor(StdDraw.WHITE);
-            StdDraw.filledRectangle(x, y, halfWidth, halfHeight);
-            StdDraw.setPenColor(StdDraw.PINK);
-            StdDraw.text(x, y, name);*/
         } else {
             pintar();
         }
@@ -42,7 +31,6 @@ public class BotonFacil extends Boton {
         if (StdDraw.mousePressed() && overFigure()) {
             while (StdDraw.mousePressed())
                 StdDraw.pause(20);
-            // Añadir animación+ sonido
             i.siguienteInterfaz(this);
         }
     }

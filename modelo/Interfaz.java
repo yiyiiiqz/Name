@@ -56,9 +56,9 @@ public class Interfaz {
         StdDraw.setPenColor(DEFAULT_COLOR);
     }
 
-    public void clearScreen() {
+    public void clearScreen(String s) {
         StdDraw.clear(StdDraw.PINK);
-        StdDraw.picture(50, 50, "blueGradient.jpg");
+        StdDraw.picture(50, 50, s);
     }
 
     public void gameGraphics() {
@@ -105,7 +105,7 @@ public class Interfaz {
     }
 
     // CREAR OBJETOS
-    BotonPlay botonPlay = new BotonPlay(50, 40, 10, 3);
+    BotonPlay botonPlay = new BotonPlay(50, 35, 23, 5.34);
     BotonFacil facil = new BotonFacil("Begginer", 27, 45, 19, 35);
     BotonDificil dificil = new BotonDificil("Hardcore", 73, 45, 19, 35);
     BotonAd botonAd = new BotonAd("Sí", 30, 45, 10, 5);
@@ -119,8 +119,9 @@ public class Interfaz {
 
     // 0. Panel de inicio
     public void home() {
-        clearScreen();
-        StdDraw.picture(50, 50, "HomeScreen.png");
+        clearScreen("MoonlightMelodyBackground.png");
+        //StdDraw.picture(50, 50, "HomeScreen.png");
+        StdDraw.picture(50, 50, "MoonlightMelodyLogo.png");
 
         botonPlay.mouse();
         botonPlay.interaccion(this);
@@ -131,9 +132,9 @@ public class Interfaz {
 
     // 1. Opciones menu
     public void menu() {
-        clearScreen();
+        clearScreen("DificultyBackground.png");
         StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.text(50, 90, "Choose the mode");
+        StdDraw.picture(50,87,"ChooseDificulty.png",75,75);
         facil.mouse();
         dificil.mouse();
         facil.interaccion(this);
@@ -147,7 +148,7 @@ public class Interfaz {
     public void temporizador() {
         StdDraw.setPenColor(StdDraw.BLACK);
         for (int i = 3; i >= 0; i--) {
-            clearScreen();
+            clearScreen("MoonlightMelodyBackground.png");
             StdDraw.text(50, 48, "Controls: D,F,J,K");
             StdDraw.text(50, 52, i + "");
             StdDraw.pause(1000);
@@ -162,7 +163,7 @@ public class Interfaz {
     private double velocidadTiles = 1.5;
 
     public void game() {
-        clearScreen();
+        clearScreen("MoonlightMelodyBackground.png");
         gameGraphics();
         StdDraw.setPenColor(StdDraw.BLACK);
         StdDraw.text(10, 90, "Score: " + points);
