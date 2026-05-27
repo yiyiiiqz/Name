@@ -211,7 +211,7 @@ public class Interfaz {
 
     // 4. Pop up
     public void popUp() {
-        clearScreen();
+        clearScreen("MoonlightMelodyBackground.png");
 
         StdDraw.setPenColor(StdDraw.BLACK);
         StdDraw.filledRectangle(50, 50, 20, 13);
@@ -241,7 +241,7 @@ public class Interfaz {
 
     // 6. Anuncio
     public void anuncio() {
-        clearScreen();
+        clearScreen("MoonlightMelodyBackground.png");
 
         Anuncio ad= new Anuncio();
         ad.reproduceAd();
