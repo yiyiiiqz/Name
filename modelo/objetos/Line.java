@@ -6,7 +6,7 @@ public class Line extends Figure {
     private String lineImage="Line.png";
 
     public Line(){
-        super(50,15,30,15);
+        super(50,21,30,15);
     }
 
     public void pintar(){
