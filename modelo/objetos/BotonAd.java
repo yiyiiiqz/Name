@@ -11,10 +11,10 @@ public class BotonAd extends Boton {
 
     @Override
     public void pintar() {
-        StdDraw.setPenColor(StdDraw.GREEN);
+        StdDraw.setPenColor(StdDraw.BOOK_BLUE);
         StdDraw.filledRectangle(x, y, halfWidth, halfHeight);
 
-        StdDraw.setPenColor(StdDraw.BLACK);
+        StdDraw.setPenColor(StdDraw.WHITE);
         StdDraw.text(x,y, name);
     }
 

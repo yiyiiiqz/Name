@@ -11,10 +11,10 @@ public class BotonNo extends Boton {
 
     @Override
     public void pintar() {
-        StdDraw.setPenColor(StdDraw.RED);
+        StdDraw.setPenColor(StdDraw.BOOK_LIGHT_BLUE);
         StdDraw.filledRectangle(x, y, halfWidth, halfHeight);
 
-        StdDraw.setPenColor(StdDraw.BLACK);
+        StdDraw.setPenColor(StdDraw.WHITE);
         StdDraw.text(x,y, name);
     }
 

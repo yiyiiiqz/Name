@@ -62,11 +62,10 @@ public class Interfaz {
     }
 
     public void gameGraphics() {
-        StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
+        StdDraw.setPenColor(StdDraw.GRAY);
         StdDraw.line(1 + 24.25, 100, 1 + 24.25, 0);
         StdDraw.line(1 + 24.25 + 0.5 + 24.25, 100, 1 + 24.25 + 0.5 + 24.25, 0);
         StdDraw.line(1 + 24.25 + 0.5 + 24.25 + 0.5 + 24.25, 100, 1 + 24.25 + 0.5 + 24.25 + 0.5 + 24.25, 0);
-        StdDraw.setPenColor(StdDraw.BLACK);
         StdDraw.text(1 + 12.125, 7, "D");
         StdDraw.text(1 + 24.25 + 0.5 + 12.125, 7, "F");
         StdDraw.text(1 + 24.25 + 0.5 + 24.25 + 0.5 + 12.125, 7, "J");
@@ -132,7 +131,7 @@ public class Interfaz {
 
     // 1. Opciones menu
     public void menu() {
-        clearScreen("DificultyBackground.png");
+        clearScreen("MoonlightMelodyBackground.png");
         StdDraw.setPenColor(StdDraw.BLACK);
         StdDraw.picture(50,87,"ChooseDificulty.png",75,75);
         facil.mouse();
@@ -146,14 +145,16 @@ public class Interfaz {
 
     // 2. Cuenta atrás
     public void temporizador() {
-        StdDraw.setPenColor(StdDraw.BLACK);
+        /*StdDraw.setPenColor(StdDraw.BLACK);
         for (int i = 3; i >= 0; i--) {
             clearScreen("MoonlightMelodyBackground.png");
             StdDraw.text(50, 48, "Controls: D,F,J,K");
             StdDraw.text(50, 52, i + "");
             StdDraw.pause(1000);
             StdDraw.show();
-        }
+        }*/
+        Countdown c= new Countdown();
+        c.reproduceFrame(this);
         siguienteInterfaz(3);
 
     }
@@ -165,7 +166,7 @@ public class Interfaz {
     public void game() {
         clearScreen("MoonlightMelodyBackground.png");
         gameGraphics();
-        StdDraw.setPenColor(StdDraw.BLACK);
+        StdDraw.setPenColor(StdDraw.WHITE);
         StdDraw.text(10, 90, "Score: " + points);
         barraScore.pintar(this);
         hp.dibujar();
@@ -213,9 +214,11 @@ public class Interfaz {
     public void popUp() {
         clearScreen("MoonlightMelodyBackground.png");
 
-        StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.filledRectangle(50, 50, 20, 13);
         StdDraw.setPenColor(StdDraw.WHITE);
+        Figure f= new Figure(50,50,40,13);
+        f.roundedCornersRectangle(50, 50, 30, 13);
+        //StdDraw.filledRectangle(50, 50, 40, 13);
+        StdDraw.setPenColor(StdDraw.GRAY);
         StdDraw.text(50, 57, "¿Desea restaurar el progreso?");
 
         botonAd.mouse();
@@ -230,9 +233,12 @@ public class Interfaz {
 
     // 5. Game over
     public void gameOver() {
-        StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.filledSquare(50, 50, 25);
-        StdDraw.setPenColor(StdDraw.RED);
+        clearScreen("MoonlightMelodyBackground.png");
+        StdDraw.setPenColor(StdDraw.WHITE);
+        Figure f= new Figure(50, 50, 25, 25);
+        f.roundedCornersRectangle(50, 50, 10, 15);
+        //StdDraw.filledSquare(50, 50, 25);
+        StdDraw.setPenColor(StdDraw.GRAY);
         StdDraw.text(50,55,"Game over");
         StdDraw.text(50,45,"Points obtained: "+ points);
         StdDraw.show();
@@ -244,7 +250,7 @@ public class Interfaz {
         clearScreen("MoonlightMelodyBackground.png");
 
         Anuncio ad= new Anuncio();
-        ad.reproduceAd();
+        ad.reproduceFrame(this);
 
         anuncioUsado = true;
         hp.ganarVida();

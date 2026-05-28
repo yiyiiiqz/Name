@@ -1,5 +1,5 @@
 ESTE PROYECTO UTILIZA LOS ELEMENTOS REQUERIDOS EN LA ENTREGA EN LAS SIGUIENTES LÍNEAS:
-    1. USO DE LAS HERENCIAS: modelo.Interfaz (Línea 39)
+    1. USO DE LAS HERENCIAS: modelo.Interfaz (Línea 39) && clases Figure, Boton, ImageSequence
     2. USO DE TADS: modelo.objetos.HealthPoints (Stack) && modelo.objetos.Anuncio (Queue)
 
 CLASE BASE INTERFAZ:

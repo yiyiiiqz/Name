@@ -2,10 +2,6 @@ package modelo.objetos;
 import stdlib.StdDraw;
 
 public class Line extends Figure {
-    /*private double x0=0;
-    private double x1=100;
-    private double y0=15;
-    private double y1=y0;*/
 
     private String lineImage="Line.png";
 
@@ -14,9 +10,11 @@ public class Line extends Figure {
     }
 
     public void pintar(){
-        //StdDraw.setPenColor(StdDraw.WHITE);
-        //StdDraw.line(x0,y0,x1,y1);
-        StdDraw.picture(x,y,lineImage,halfWidth*2,halfHeight*2);
+        StdDraw.setPenColor(StdDraw.GRAY);
+        //StdDraw.setPenRadius(0.02);
+        StdDraw.line(0,y,100,y);
+        //StdDraw.picture(x,y,lineImage,halfWidth*2,halfHeight*2);
+        //StdDraw.setPenRadius();
     }
 
     public boolean tocando(Tiles t){

@@ -40,15 +40,15 @@ public class HealthPoints {
 
     public void dibujar() {
 
-        double xInicio = 80; // izquierda
+        double xInicio = 70; // izquierda
         double y = 95; // arriba
-        double radio = 1.5; // tamaño del círculo
-        double separacion = 4;
+        double separacion = 6;
 
         for (int i = 0; i < vidasMax; i++) {
             StdDraw.setPenColor(StdDraw.RED);
-            if (i < vidas.size()) StdDraw.filledCircle(xInicio + i * separacion, y, radio);
-            else StdDraw.circle(xInicio + i * separacion, y, radio);
+            if (i < vidas.size())
+                StdDraw.picture(xInicio + i * separacion, y, "Vidas.png",5,5);
+            else StdDraw.picture(xInicio + i * separacion, y, "VidasPerdidas.png",5,5);
         }
     }
 }
