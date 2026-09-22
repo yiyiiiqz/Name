@@ -1,3 +1,9 @@
+DESCRIPCIÓN:
+Proyecto grupal para la asignatura de programación en la UPM.
+Juego inspirado en teclas de piano, cuyo objetivo es obtener la mayor puntuación tratando de pulsar el mayor número de teclas sin perder las cinco vidas.
+
+____________________________________________________________________________________
+
 ESTE PROYECTO UTILIZA LOS ELEMENTOS REQUERIDOS EN LA ENTREGA EN LAS SIGUIENTES LÍNEAS:
     1. USO DE LAS HERENCIAS: modelo.Interfaz (Línea 39) && clases Figure, Boton, ImageSequence
     2. USO DE TADS: modelo.objetos.HealthPoints (Stack) && modelo.objetos.Anuncio (Queue)
